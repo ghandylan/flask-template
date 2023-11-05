@@ -8,6 +8,8 @@
  + .env file support with __python-dotenv__
  + Powerful template engine __Jinja2__
  + Database migration support with __Flask-Migrate__
+ + Password hashing with __bcrypt__
+ + __Flask-WTF__ forms with CSRF protection
 
 ##### Pre-requisites:
  + Python 3.6 or above
@@ -15,7 +17,7 @@
  + IDE of your choice
 
 ##### To use this template:
-1. Clone this repository using git clone <repo_url>
+1. Clone this repository using git clone ```git clone https://github.com/ghandylan/flask-template```
 2. Unzip the folder and open it in your favorite IDE like PyCharm, VSCode, etc.
 3. Open the terminal and create a virtual environment using ```python -m venv venv```
 4. Run ```pip install -r requirements.txt``` to install all the dependencies.
