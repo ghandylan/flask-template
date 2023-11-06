@@ -31,20 +31,21 @@ def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate_on_submit():
         # check if user exists
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user:
             # check if password matches
             if bcrypt.checkpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')):
                 login_user(user)
+                flash("Logged in", category='success')
                 return redirect(url_for('user_views.dashboard', username=user.username))
             # if password does not match, flash error and redirect to login page
             else:
                 flash("Incorrect Password", category='error')
-                return render_template('guest/login.html', error="Incorrect Password")
+                return render_template('guest/login.html', form=form, error="Invalid email or password")
         # if user does not exist, flash error and redirect to login page
         else:
-            flash("User does not exist", category='error')
-            return render_template('guest/login.html', error="User does not exist")
+            flash("The account does not exist.", category='error')
+            return render_template('guest/login.html', form=form, error="The account does not exist.")
 
     return render_template('guest/login.html', form=form)
 
@@ -61,10 +62,11 @@ def register():
     if request.method == 'POST' and form.validate_on_submit():
         # check if user exists
         user = User.query.filter_by(username=form.username.data).first()
-        if user:
+        email = User.query.filter_by(email=form.email.data).first()
+        if user or email:
             # if user exists, flash error and redirect to register page
-            flash("User already exists", category='error')
-            return render_template('guest/register.html', error="User already exists")
+            flash("Account already exists", category='error')
+            return render_template('guest/register.html', form=form, error="Account already exists")
         else:
             # if user does not exist, create user and redirect to login page
             new_user = User(
@@ -76,7 +78,7 @@ def register():
             )
             db.session.add(new_user)
             db.session.commit()
-            flash("User created", category='success')
+            flash("Account created successfully.", category='success')
             return redirect(url_for('guest_views.login'))
     return render_template('guest/register.html', form=form)
 
@@ -85,4 +87,5 @@ def register():
 @login_required
 def logout():
     logout_user()
+    flash("Logged out", category='success')
     return redirect('/')
