@@ -31,7 +31,7 @@ def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate_on_submit():
         # check if user exists
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(username=form.username.data).first()
         if user:
             # check if password matches
             if bcrypt.checkpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')):

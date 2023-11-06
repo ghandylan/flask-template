@@ -1,15 +1,19 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField
-from wtforms.validators import DataRequired, Length, EqualTo
+from wtforms import StringField, PasswordField, EmailField, validators
+from wtforms.validators import DataRequired, Length, EqualTo, Regexp
 
 
 class LoginForm(FlaskForm):
-    email = EmailField('Email', validators=[DataRequired(), Length(min=3, max=255)])
+    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=20)])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8, max=64)])
 
 
 class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=20)])
+    username = StringField('Username', validators=[
+        validators.DataRequired(message='Username is required.'),
+        validators.Length(min=3, max=20, message='Username must be between 3 and 20 characters.'),
+        validators.Regexp(r'^[\w.]+$', message='Username can only contain letters, numbers, and underscores.')
+    ])
     email = EmailField('Email', validators=[DataRequired(), Length(min=3, max=255)])
     password = PasswordField('Password',
                              validators=[
