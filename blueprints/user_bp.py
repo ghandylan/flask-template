@@ -10,4 +10,4 @@ user_blueprint = Blueprint('user_views', __name__, template_folder='templates')
 @login_required
 @role_required('user')
 def dashboard(username):
-    return render_template('user/dashboard.html', username=current_user.username)
+    return render_template('user/dashboard.html')
