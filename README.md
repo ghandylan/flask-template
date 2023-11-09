@@ -23,15 +23,16 @@
 
 1. Clone this repository using git clone ```git clone https://github.com/ghandylan/flask-template```
 2. Unzip the folder and open it in your favorite IDE like PyCharm, VSCode, etc.
-3. Open the terminal and create a virtual environment using ```python -m venv venv```
-4. Run ```pip install -r requirements.txt``` to install all the dependencies.
-5. Create a .env file and add the following variables:
+3. Open the terminal and create a virtual environment using ```python -m venv <env_name>```
+4. Activate the virtual environment using ```<env_name>\Scripts\activate``` on Windows or ```source <env_name>/bin/activate``` on Linux/MacOS.
+5. Run ```pip install -r requirements.txt``` to install all the dependencies.
+6. Create a .env file and add the following variables:
     + ```SECRET_KEY``` - A secret key for your application.
     + ```SQLALCHEMY_DATABASE_URI``` - The URI for your MySQL database.
         - Example: ```mysql://<username>:<password>@localhost:3306/<db_name>```
     + ```SQLALCHEMY_TRACK_MODIFICATIONS``` - Set it to ```False```.
-6. Make sure your MySQL server is running and create a database with the name you specified in the .env file.
-7. Run the following commands to perform database migrations with __Flask-Migrate__:
+7. Make sure your MySQL server is running and create a database with the name you specified in the .env file.
+8. Run the following commands to perform database migrations with __Flask-Migrate__:
     + ```flask db init```
     + ```flask db migrate```
     + ```flask db upgrade```
@@ -39,7 +40,7 @@
    Should you encounter any errors with database migrations, run ```flask db stamp head``` and then run the above excluding the ```flask db init``` command.
 
    
-8. Run ```python app.py``` to start the server.
+9. Run ```python app.py``` to start the server.
 
 ##### Files in the project:
 
