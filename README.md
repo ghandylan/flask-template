@@ -1,7 +1,7 @@
 # Flask Starter Template
 ## Rationale
 
-Flask is "micro framework" based on Python used to build web applications. It contains only the barebones when creating projects. As a result, when I create new projects I always found myself installing the dependencies I need based on the projects. Since Flask is pretty much unopinionated, I built this repository so that everyone can use it as a template and save time when setting up projects for web development.
+Flask is a "micro-framework" based on Python used to build web applications. It contains only the barebones when creating projects. As a result, when I create new projects, I always find myself installing the dependencies I need based on the projects. This takes too much effort and becomes repetitive. Since Flask is pretty much unopinionated, I built this repository so that everyone can use it as a template and save time when setting up projects for web development. It includes basic plugins that I use such as database interaction, user management, security, and db migrations.
 ### This is a starter template for Flask projects.
 
 ##### It includes the following features:
